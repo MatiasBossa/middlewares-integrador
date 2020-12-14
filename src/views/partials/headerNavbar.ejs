@@ -36,10 +36,18 @@
 			</ul>
 			
 			<ul class="right-navbar">
-				<li><a href="/user/profile">example@example.com <i class="fas fa-user"></i></a></li>
-				<li><a href="/user/logout">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a></li>
-				<li><a href="/user/register">Registrate <i class="far fa-address-card"></i></a></li>
-				<li><a href="/user/login">Ingresá <i class="fas fa-sign-in-alt"></i></a></li>
+				<!-- 
+					* Usamos la variable local userLog, para obtener los datos de usuario logeado
+					* Si la variable existe, se cargan los datos en la vista y se deja visible los botones profile y logout
+					* Si la variable no existe, se carga solamente los botones register y login 
+				 -->
+				<% if(userLog) { %> 
+					<li><a href="/user/profile"><%= userLog.email %>  <i class="fas fa-user"></i></a></li>
+					<li><a href="/user/logout">Cerrar sesión <i class="fas fa-sign-in-alt"></i></a></li>
+				<% } else { %>
+					<li><a href="/user/register">Registrate <i class="far fa-address-card"></i></a></li>
+					<li><a href="/user/login">Ingresá <i class="fas fa-sign-in-alt"></i></a></li>
+				<% } %> 
 			</ul>
 		</nav>
 	</div>
